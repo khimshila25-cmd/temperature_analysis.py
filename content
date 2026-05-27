@@ -1,0 +1,68 @@
+# ============================================================
+#        WEEKLY TEMPERATURE ANALYSIS — 3 TASKS
+# ============================================================
+
+temperatures = [28, 32, 35, 29, 31, 30, 27]
+days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+# ------------------------------------------------------------
+# TASK 1 — Find Max and Min Temperature
+# ------------------------------------------------------------
+print("=" * 50)
+print("  TASK 1 — Max and Min Temperature")
+print("=" * 50)
+
+max_temp = max(temperatures)
+min_temp = min(temperatures)
+
+max_day = days[temperatures.index(max_temp)]
+min_day = days[temperatures.index(min_temp)]
+
+print(f"  Temperatures : {temperatures}")
+print(f"  Hottest day  : {max_day} → {max_temp}°C  🔥")
+print(f"  Coldest day  : {min_day} → {min_temp}°C  ❄️")
+
+# ------------------------------------------------------------
+# TASK 2 — Count Hot Days (above 30°C) using continue
+# ------------------------------------------------------------
+print("\n" + "=" * 50)
+print("  TASK 2 — Count Hot Days (temp > 30°C)")
+print("  [Skipping days ≤ 30 using 'continue']")
+print("=" * 50)
+
+hot_days = 0
+
+for i in range(len(temperatures)):
+    if temperatures[i] <= 30:          # skip cool/normal days
+        print(f"  {days[i]:<12} {temperatures[i]}°C  → skipped (≤ 30)")
+        continue                        # jump to next iteration
+    hot_days += 1
+    print(f"  {days[i]:<12} {temperatures[i]}°C  → HOT ☀️")
+
+print(f"\n  Total hot days : {hot_days}")
+
+# ------------------------------------------------------------
+# TASK 3 — Alert System using break (stop at 40°C or above)
+# ------------------------------------------------------------
+print("\n" + "=" * 50)
+print("  TASK 3 — Alert System (stop if temp ≥ 40°C)")
+print("  [Using 'break' to halt immediately]")
+print("=" * 50)
+
+# Adding a danger-level temp to demonstrate the break
+alert_temps = [28, 32, 35, 41, 31, 30, 27]   # 41°C on Thursday triggers alert
+
+hot_count = 0
+
+for i in range(len(alert_temps)):
+    if alert_temps[i] >= 40:           # DANGER — stop everything
+        print(f"  {days[i]:<12} {alert_temps[i]}°C  → 🚨 ALERT! Temp ≥ 40°C. Stopping now!")
+        break                           # exit loop immediately
+    if alert_temps[i] > 30:
+        hot_count += 1
+        print(f"  {days[i]:<12} {alert_temps[i]}°C  → HOT ☀️  (hot day #{hot_count})")
+    else:
+        print(f"  {days[i]:<12} {alert_temps[i]}°C  → Normal")
+
+print(f"\n  Hot days counted before alert : {hot_count}")
+print("=" * 50)
